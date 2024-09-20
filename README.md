@@ -13,3 +13,6 @@ Please make sure all the listed dependencies are installed and correctly running
 
 
 ## Usage
+### Setting the parameters
+
+### Launching reMoDA
