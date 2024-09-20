@@ -7,14 +7,14 @@ from pca.main_pca import main_pca
 # Directories on which the input folder can be found and on which the results will be saved. The input and output
 # directories are checked in order to homogenize their format, to make sure they end in /. The folder structure for
 # intermediate calculations and for the results will be generated after the samples and replicas are defined.
-input_dir = "/media/elhectro2/TOSHIBA_EXT/Trabajo_Unizar/reMoDA/Test_sets/CHEK2/Simulations/Trajectories-to-analyze_SMenao"
-output_dir = "/media/elhectro2/TOSHIBA_EXT/Trabajo_Unizar/reMoDA/Test_sets/CHEK2/Simulations/Trajectories-to-analyze_SMenao/output"
+input_dir = "/path/to/input/dir"
+output_dir = "/path/to/output/dir"
 input_dir = check_dir(input_dir)
 output_dir = check_dir(output_dir)
 
 # Dictionary with all the samples and the replicas present in each one. Each sample may or may not have different
 # number of replicas with different names. The replicas do not necessarily need to follow the "r1" nomenclature.
-# samples_replicas_dict = {"WT": ["r1", "r2", "r3", "r4", "r5"]}
+# Some examples are provided
 samples_replicas_dict = {# "A392V-358K": ["r1_A", "r1_B", "r2_A", "r2_B"],
                          # "A392V-378K": ["r1_A", "r1_B", "r3_A", "r3_B"],
                          # "A392V-398K": ["r1_A", "r1_B", "r2_A", "r2_B", "r3_A", "r3_B"],
