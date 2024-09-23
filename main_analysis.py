@@ -72,7 +72,7 @@ time_step = 1  # Time between saved frames of the simulation (in ns)
 duration = 1000  # Timelength of the full trajectory (in ns)
 final = 1000  # Time of the last frame of the trajectory (in ns)
 starting = final - duration  # Starting time of the trajectory (in ns). It may or may not be 0.
-n_groups = 18  # Number of groups defined in the .tpr file (used when automatizing gmx make_ndx for local analyses)
+n_groups = 18  # Number of groups defined in the .tpr file (used when automating gmx make_ndx for local analyses)
 
 # Parameters for multianalysis.
 protein_type = "a+b"  # Protein folding according to the secondary structure: alpha (a), beta (b), or alpha+beta(a+b).
