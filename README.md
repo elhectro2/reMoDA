@@ -30,8 +30,33 @@ The environment can be set by changing the four variables in [command_dirs.py](c
 * TMscore: Alias for calling TMScore in the bash terminal
 
 ## Usage
+reMoDA can be used by simply editing the (main_analysis.py)[main_analysis.py] script, to tune the parameters and then launching it. However, the input folders must comply to a given structure.
 ### Preparing the input folders
-
+There must be a single folder for each sample (one or more) and, inside each folder, one for each replica of the sample. Even if only one replica is available, a folder for that replica must be created. For each replica, the folder must contain the following files:
+* A .xtc file, containing the trajectory
+* A .edr file, containing the saved energetic properties along the trajectory
+* A .tpr file, containing the topology.
+* A .gro file (optional). If it is not present in the folder, it will be created from the first frame of the .xtc trajectory.
 ### Setting the parameters
-
+The main_analysis.py script is mainly composed by tunable variables to set the correct parameters for the calculation. The parameters can be grouped based on their definition.
+#### Directories and samples parameters
+* **input_dir:** Directory in which the folders of all samples are saved
+* **output_dir:** Directory in which all the resulting files will be created
+* **samples_replicas_dict:** Dictionary indicating all replicas for all samples. It can be introduced manually or, in case all samples have the same replicas (same number and name of replicas), using the **samples** and **r_list** parameters.
+* **samples:** (Optional) Name for the samples that have the same replicas
+* **r_list:** (Optional) Name for the replicas of the previously defined **samples**
+* **reference_sample:** The sample to which all mutants are to be compared (usually the WT one or the one where no unfolding is expected)
+* **labels_dict:** (optional) Label for each of the samples. If the dictionary is empty, it takes the name of the sample as label.
+* **position_dict:** (optional) Position of interest for each sample. If none is given, the program will automatically check if the name of the sample is in the O#M format, where O is the 1-letter code for the original amino acid, # is the position of the mutation and M is the 1-letter code for the mutated amino acid. If this is the format of the name of the sample, # will be used as position. If not, it will return None, and no local calculations will be performed.
+#### Simulation parameters
+* **time_step:** Time between saved frames of the simulation (in ns)
+* **duration:** Timelength of the full trajectory (in ns)
+* **final:** Time of the last frame of the trajectory (in ns)
+* **starting:** (automatically calculated) Starting time of the trajectory (in ns). It may or may not be 0.
+* **n_groups:** Number of groups defined in the .tpr file (used when automating gmx make_ndx for local analyses)
+#### Multianalysis parameters
+* **protein_type:** Protein folding according to the secondary structure: alpha (a), beta (b), or alpha+beta(a+b). If the value of protein_type is not a or b, it will be assigned a+b. Used for secondary structure calculations.
+#### Clustering parameters
+* **clustering_global_threshold:** Minimum distance between two different clusters in global clustering (in nm). 0.3 is recommended.
+* **clustering_local_threshold:** Minimum distance between two different clusters in local clustering (in nm), if performed. 0.075 is recommended.
 ### Launching reMoDA
