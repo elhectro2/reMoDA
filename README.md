@@ -6,7 +6,7 @@ reMoDA is presented as a Python 3 library, which performs several analysis using
 ### Dependencies
 Please make sure all the listed dependencies are installed and correctly running. The versions used for development and testing are indicated in parenthesis.
 #### Python libraries
-Required Python (3.10) libraries, as listed in [requirements.txt](requirements.txt), are:
+Required Python (3.10.12) libraries, as listed in [requirements.txt](requirements.txt), are:
 * matplotlib(3.6.2)
 * scikit-learn(1.2.0)
 * numpy(1.23.5)
@@ -20,7 +20,11 @@ Required Python (3.10) libraries, as listed in [requirements.txt](requirements.t
 * GROMACS (2021.4-2, the latest version can be downloaded from the [GROMACS webpage](https://manual.gromacs.org/current/download.html))
 * DSSP (executable provided with reMoDA at Multianalysis/Analysis/dssp)
 ### Setting up the environment
-
+The environment can be set by changing the four variables in [command_dirs.py](command_dirs.py):
+* analysis_dir: The path in which reMoDA is located (i.e., where the [main_analysis.py](main_analysis.py) script is located)
+* dssp: Directory in which the dssp executable is located (by default, the location of the provided executable at [Multianalysis/Analysis/dssp](Multianalysis/Analysis/dssp))
+* gromacs: Alias for calling GROMACS in the bash terminal
+* TMscore: Alias for calling TMScore in the bash terminal
 
 ## Usage
 ### Setting the parameters
