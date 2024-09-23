@@ -49,6 +49,7 @@ The main_analysis.py script is mainly composed by tunable variables to set the c
 * **labels_dict:** (optional) Label for each of the samples. If the dictionary is empty, it takes the name of the sample as label.
 * **position_dict:** (optional) Position of interest for each sample. If none is given, the program will automatically check if the name of the sample is in the O#M format, where O is the 1-letter code for the original amino acid, # is the position of the mutation and M is the 1-letter code for the mutated amino acid. If this is the format of the name of the sample, # will be used as position. If not, it will return None, and no local calculations will be performed.
 #### Simulation parameters
+If these parameters are not known, they can be obtained by running `gmx rms` on the xtc file and inspecting the resulting file using `vim` or any other text processor.
 * **time_step:** Time between saved frames of the simulation (in ns)
 * **duration:** Timelength of the full trajectory (in ns)
 * **final:** Time of the last frame of the trajectory (in ns)
@@ -60,3 +61,4 @@ The main_analysis.py script is mainly composed by tunable variables to set the c
 * **clustering_global_threshold:** Minimum distance between two different clusters in global clustering (in nm). 0.3 is recommended.
 * **clustering_local_threshold:** Minimum distance between two different clusters in local clustering (in nm), if performed. 0.075 is recommended.
 ### Launching reMoDA
+After setting the correct parameters, reMoDA can be launched by executing the (main_analysis.py)[main_analysis.py] script. This can be done using an IDE or directly on the terminal. We strongly recommend using the terminal, as the calculations are computationally expensive and the IDE may need more resources, hampering reMoDA calculations.
