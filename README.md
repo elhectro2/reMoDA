@@ -27,6 +27,8 @@ The environment can be set by changing the four variables in [command_dirs.py](c
 * TMscore: Alias for calling TMScore in the bash terminal
 
 ## Usage
+### Preparing the input folders
+
 ### Setting the parameters
 
 ### Launching reMoDA
