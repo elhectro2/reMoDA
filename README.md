@@ -1,6 +1,9 @@
 # reMoDA
 Automated calculation of unfolding detection metrics for relaxation Molecular Dynamics
 
+## Introduction
+reMoDA is a Python workflow designed for the detection of unfolding events in Molecular Dynamics simulations, especially tuned for relaxation Molecular Dynamics. It calculates four different kinds of metrics, built in four different modules: Clustering, energetics, multianalysis and PCA. It has been developed by Helena García-Cebollada at the [Javier Sancho lab](https://javiersancholab.bifi.es/)
+
 ## Installation
 reMoDA is presented as a Python 3 library, which performs several analysis using other libraries and software. To successfully run reMoDA, those dependencies must be installed and their execution commands must be correctly indicated (see [Setting up the environment](#setting-up-the-environment)).
 ### Dependencies
