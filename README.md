@@ -10,7 +10,7 @@ Please make sure all the listed dependencies are installed and correctly running
 #### External software
 * TM-score
 * GROMACS
-* DSSP (provided with reMoDA)
+* DSSP (executable provided with reMoDA at Multianalysis/Analysis/dssp)
 ### Setting up the environment
 
 
