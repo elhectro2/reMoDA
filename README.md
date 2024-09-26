@@ -62,3 +62,13 @@ If these parameters are not known, they can be obtained by running `gmx rms` on 
 * **clustering_local_threshold:** Minimum distance between two different clusters in local clustering (in nm), if performed. 0.075 is recommended.
 ### Launching reMoDA
 After setting the correct parameters, reMoDA can be launched by executing the (main_analysis.py)[main_analysis.py] script. This can be done using an IDE or directly on the terminal. We strongly recommend using the terminal, as the calculations are computationally expensive and the IDE may need more resources, hampering reMoDA calculations.
+### Examples of usage
+To illustrate the usage of reMoDA, the most common scenarios are shown as examples of usage. The usage of reMoDA in a single sample is not recommended for the Clustering and PCA modules, as their units are arbitrary and the results cannot be interpreted with certainty, so those modules only work by comparing samples. Leaving that scenario out, the most common ones are samples with the same number of replicas, equally named between samples; samples with one replica each; and the most complex case, with more than two replicas and different number of replicas for each one.
+#### Two samples with the same number of replicas
+We'll use as an example the hypothetical case of a protein with a mutation of interest, so the WT and the A237V mutant are simulated, with three replicas each. The input directory should be like this:
+
+#### Two samples with one replica each
+We'll use as an example the hypothetical case of a protein at two temperatures, so the 298K and the 347K temperatures are simulated, with one replica each. The input directory should be like this:
+
+#### Three samples with different number of replicas
+We'll use as an example the hypothetical case of a protein with two mutation of interest, located at different residues, so the WT, the D43E and the L123I mutants are simulated, with different number and names of replicas for each sample. The input directory should be like this:
