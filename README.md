@@ -66,9 +66,70 @@ After setting the correct parameters, reMoDA can be launched by executing the (m
 To illustrate the usage of reMoDA, the most common scenarios are shown as examples of usage. The usage of reMoDA in a single sample is not recommended for the Clustering and PCA modules, as their units are arbitrary and the results cannot be interpreted with certainty, so those modules only work by comparing samples. Leaving that scenario out, the most common ones are samples with the same number of replicas, equally named between samples; samples with one replica each; and the most complex case, with more than two replicas and different number of replicas for each one.
 #### Two samples with the same number of replicas
 We'll use as an example the hypothetical case of a protein with a mutation of interest, so the WT and the A237V mutant are simulated, with three replicas each. The input directory should be like this:
+```
+input_dir  
+├── WT
+|   ├── r1
+|   |   ├── traj.xtc
+|   |   ├── energies.edr
+|   |   └── top.tpr
+|   ├── r2
+|   |   ├── traj.xtc
+|   |   ├── energies.edr
+|   |   └── top.tpr
+|   └── r3
+|       ├── traj.xtc
+|       ├── energies.edr
+|       └── top.tpr
+└── A273V
+    ├── r1
+    |   ├── traj.xtc
+    |   ├── energies.edr
+    |   └── top.tpr
+    ├── r2
+    |   ├── traj.xtc
+    |   ├── energies.edr
+    |   └── top.tpr
+    └── r3
+        ├── traj.xtc
+        ├── energies.edr
+        └── top.tpr
+```
+As the three replicas for each sample are named equally, the simplified version for defining the replicas dictionary can be used:
+```python
+samples = ["WT", "A273V"]
+r_list = ["r1", "r2", "r3"]
+samples_replicas_dict = {x: r_list for x in samples}
+```
+As the labels will be the same as the sample names and the mutation follows the defined name, there's no need to define any of theses dictionaries. However, for illustrative purposes, we will define them in this example:
+```python
+labels_dict = {"WT": "WT", "A273V": "A273V"}
+position_dict = {"WT": None, "A273V": 273}
+```
+For this example, let's assume the simulation parameters are the original ones set in main_analysis.py, but we are using a mainly alpha protein:
+```python
+time_step = 1  # Time between saved frames of the simulation (in ns)
+duration = 1000  # Timelength of the full trajectory (in ns)
+final = 1000  # Time of the last frame of the trajectory (in ns)
+starting = final - duration  # Starting time of the trajectory (in ns). It may or may not be 0.
+n_groups = 18  # Number of groups defined in the .tpr file (used when automating gmx make_ndx for local analyses)
+
+# Parameters for multianalysis.
+protein_type = "a"  # Protein folding according to the secondary structure: alpha (a), beta (b), or alpha+beta(a+b).
+# If the value of protein_type is not a or b, it will be assigned a+b. Used for secondary structure calculations.
+protein_type = autocomplete_protein_type(protein_type)
+
+# Parameters for clustering
+clustering_global_threshold = 0.3  # In nm
+clustering_local_threshold = 0.075  # In nm
+```
+Then, the only remaining step is to launch the main script (we recommend launching via terminal):
+```bash
+python3 main_analysis.py
+```
 
 #### Two samples with one replica each
 We'll use as an example the hypothetical case of a protein at two temperatures, so the 298K and the 347K temperatures are simulated, with one replica each. The input directory should be like this:
 
 #### Three samples with different number of replicas
-We'll use as an example the hypothetical case of a protein with two mutation of interest, located at different residues, so the WT, the D43E and the L123I mutants are simulated, with different number and names of replicas for each sample. The input directory should be like this:
+We'll use as an example the hypothetical case of a protein with two mutations of interest, located at different residues, so the WT, the D43E and the L123I mutants are simulated, with different number and names of replicas for each sample. The input directory should be like this:
