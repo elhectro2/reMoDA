@@ -101,8 +101,9 @@ samples = ["WT", "A273V"]
 r_list = ["r1", "r2", "r3"]
 samples_replicas_dict = {x: r_list for x in samples}
 ```
-As the labels will be the same as the sample names and the mutation follows the defined name, there's no need to define any of theses dictionaries. However, for illustrative purposes, we will define them in this example:
+The reference sample would be the WT in this case, even though in two samples analysis it makes no clear difference, it is a required variable. As the labels will be the same as the sample names and the mutation follows the defined name, there's no need to define any of theses dictionaries. However, for illustrative purposes, we will define them in this example:
 ```python
+reference_sample = "WT"
 labels_dict = {"WT": "WT", "A273V": "A273V"}
 position_dict = {"WT": None, "A273V": 273}
 ```
@@ -130,6 +131,86 @@ python3 main_analysis.py
 
 #### Two samples with one replica each
 We'll use as an example the hypothetical case of a protein at two temperatures, so the 298K and the 347K temperatures are simulated, with one replica each. The input directory should be like this:
+```
+input_dir  
+├── 298K
+|   └── r1
+|       ├── traj.xtc
+|       ├── energies.edr
+|       └── top.tpr
+└── 347K
+    └── r1
+        ├── traj.xtc
+        ├── energies.edr
+        └── top.tpr
+```
+Please, make sure that a folder for the unique replica is created inside the sample folder. If the input files are located directly in the sample folder, they will not be found by reMoDA.
+
+As the unique replica folder for each sample are named equally, the simplified version for defining the replicas dictionary can be used:
+```python
+samples = ["298K", "347K"]
+r_list = ["r1"]
+samples_replicas_dict = {x: r_list for x in samples}
+```
+In this case, sample names and labels are identical, so there is no need defininf them. However, this example uses different temperatures, so there is not a residue of interest. In this case, we can define the residue of interest as ```None``` and no local calculations will be performed.
+```python
+reference_sample = "298K"
+labels_dict = {}
+autocomplete_labels(samples_replicas_dict, labels_dict)
+position_dict = {"298K": None, "347K": None}
+```
+Considering the simulation parameters are correct, the only step left is to launch the main_analysis.py script as in the previous example:
+```bash
+python3 main_analysis.py
+```
 
 #### Three samples with different number of replicas
 We'll use as an example the hypothetical case of a protein with two mutations of interest, located at different residues, so the WT, the D43E and the L123I mutants are simulated, with different number and names of replicas for each sample. The input directory should be like this:
+```
+input_dir  
+├── WT
+|   ├── r1
+|   |   ├── traj.xtc
+|   |   ├── energies.edr
+|   |   └── top.tpr
+|   ├── r2
+|   |   ├── traj.xtc
+|   |   ├── energies.edr
+|   |   └── top.tpr
+|   └── r3
+|       ├── traj.xtc
+|       ├── energies.edr
+|       └── top.tpr
+├── D43E
+|   ├── r4
+|   |   ├── traj.xtc
+|   |   ├── energies.edr
+|   |   └── top.tpr
+|   └── r5
+|       ├── traj.xtc
+|       ├── energies.edr
+|       └── top.tpr
+└── L123I
+    └── r6
+        ├── traj.xtc
+        ├── energies.edr
+        └── top.tpr
+```
+In this case, the simplified version for defining the dictionary cannot be used, so the full dictionary is indicated manually:
+```python
+samples_replicas_dict = {"WT": ["r1", "r2", "r3"],
+                         "D43E": ["r4", "r5",],
+                         "L123I": ["r6"]}
+```
+As there are more than two samples, in this case selecting a different reference sample will make a difference. If WT is selected, the comparisons WT_vs_D43E and WT_vs_L123I will be generated, while if D43E is selected, the generated comparisons will be D43E_vs_WT and D43E_vs_L123I. In this case, we select the WT as reference sample and leave the label and position dictionaries empty so that they are autocompleted:
+```python
+reference_sample = WT
+labels_dict = {}
+autocomplete_labels(samples_replicas_dict, labels_dict)
+position_dict = {}
+autocomplete_positions(samples_replicas_dict, position_dict)
+```
+Assuming the parameters of the simulation are correct, the only step left is launching the script:
+```bash
+python3 main_analysis.py
+```
