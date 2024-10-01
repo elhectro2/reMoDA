@@ -15,40 +15,24 @@ output_dir = check_dir(output_dir)
 # Dictionary with all the samples and the replicas present in each one. Each sample may or may not have different
 # number of replicas with different names. The replicas do not necessarily need to follow the "r1" nomenclature.
 # Some examples are provided
-samples_replicas_dict = {# "A392V-358K": ["r1_A", "r1_B", "r2_A", "r2_B"],
-                         # "A392V-378K": ["r1_A", "r1_B", "r3_A", "r3_B"],
-                         # "A392V-398K": ["r1_A", "r1_B", "r2_A", "r2_B", "r3_A", "r3_B"],
-                         # "H345Y-378K": ["r1_A", "r1_B", "r2_A", "r2_B"],
-                         # "H345Y-398K": ["r2_A", "r2_B"],
-                         # "P471L-358K": ["r1_A", "r1_B", "r2_A", "r2_B", "r3_A", "r3_B"],
-                         # "P471L-378K": ["r1_A", "r1_B", "r2_A", "r2_B", "r3_A", "r3_B"],
-                         # "P471L-398K": ["r1_A", "r1_B", "r2_A", "r2_B", "r3_A", "r3_B"],
-                         "R474C-378K": ["r1_A", "r1_B", "r2_A", "r2_B", "r3_A", "r3_B"],
-                         "R474C-398K": ["r1_A", "r1_B", "r2_A", "r2_B", "r3_A", "r3_B"],
-                         "WT-358K": ["r1_A", "r1_B"]}
+samples_replicas_dict = {"ref_sample": ["r1", "r2", "r3", "r4", "r5"],
+                         "sample_1": ["r1", "r2"],
+                         "sample_2": ["r1"]}
 
 
 # If the replicas are named the same on all samples, this piece of code can be easier to modify
-"""samples = ["298K", "310K"]
+"""samples = ["ref_sample", "sample_1", "sample_2"]
 r_list = ["r1", "r2", "r3", "r4", "r5"]
 samples_replicas_dict = {x: r_list for x in samples}  # Generates the combinations of all samples with all replicas
 """
 # The sample to which all mutants are to be compared (usually the WT one) is defined
-reference_sample = "WT-358K"
+reference_sample = "ref_sample"
 
 # Names for each of the samples. If you want to use the same name as in samples_replicas_dict, don't introduce it 
 # in the dictionary, it will autocomplete automatically
-labels_dict = {# "A392V-358K": "A392V-358K",
-               # "A392V-378K": "A392V-378K",
-               # "A392V-398K": "A392V-398K",
-               # "H345Y-378K": "H345Y-378K",
-               # "H345Y-398K": "H345Y-398K",
-               # "P471L-358K": "P471L-358K",
-               # "P471L-378K": "P471L-378K",
-               # "P471L-398K": "P471L-398K",
-               "R474C-378K": "R474C-378K",
-               "R474C-398K": "R474C-398K",
-               "WT-358K": "WT-358K"}
+labels_dict = {"ref_sample": "ref_sample",
+               "sample_1": "sample_1",
+               "sample_2": "sample_2"}
 
 autocomplete_labels(samples_replicas_dict, labels_dict)
 
@@ -57,11 +41,7 @@ autocomplete_labels(samples_replicas_dict, labels_dict)
 # the position by trimming out the first and last character of the sample string. If the result is an integer, it will 
 # be used as the position. If not, the value None will be assigned and no local analysis would be performed on that 
 # sample.
-position_dict = {"WT-358K": None, "A392V-358K": 392, "A392V-378K": 392, "A392V-398K": 392, "H345Y-378K": 345,
-                 "H345Y-398K": 345, "P471L-358K": 471, "P471L-378K": 471, "P471L-398K": 471, "R474C-378K": 474,
-                 "R474C-398K": 474}
-# position_dict = {"WT": None, "R158C": 158}
-# position_dict = {"298K": None, "310K": None}
+position_dict = {"ref_sample": None, "sample_1": 123, "sample_2": None}
 autocomplete_positions(samples_replicas_dict, position_dict)
 
 # The folder structure for intermediate calculations and for saving the results is generated
