@@ -13,10 +13,6 @@ Required Python (3.10.12) libraries, as listed in [requirements.txt](requirement
 * matplotlib(3.6.2)
 * scikit-learn(1.2.0)
 * numpy(1.23.5)
-* pandas(1.5.2)
-* statsmodels(0.13.5)
-* scipy(1.9.3)
-* tsmoothie(1.0.4)
 * mdtraj(1.9.7)
 #### External software
 * TM-score (downloadable from the [Zhang group webpage](https://zhanggroup.org/TM-score/))
