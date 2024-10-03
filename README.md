@@ -26,7 +26,7 @@ The environment can be set by changing the four variables in [command_dirs.py](c
 * TMscore: Alias for calling TMScore in the bash terminal
 
 ## Usage
-reMoDA can be used by simply editing the (main_analysis.py)[main_analysis.py] script, to tune the parameters and then launching it. However, the input folders must comply to a given structure.
+reMoDA can be used by simply editing the [main_analysis.py](main_analysis.py) script, to tune the parameters and then launching it. However, the input folders must comply to a given structure.
 ### Preparing the input folders
 There must be a single folder for each sample (one or more) and, inside each folder, one for each replica of the sample. Even if only one replica is available, a folder for that replica must be created. For each replica, the folder must contain the following files:
 * A .xtc file, containing the trajectory
@@ -57,7 +57,7 @@ If these parameters are not known, they can be obtained by running `gmx rms` on 
 * **clustering_global_threshold:** Minimum distance between two different clusters in global clustering (in nm). 0.3 is recommended.
 * **clustering_local_threshold:** Minimum distance between two different clusters in local clustering (in nm), if performed. 0.075 is recommended.
 ### Launching reMoDA
-After setting the correct parameters, reMoDA can be launched by executing the (main_analysis.py)[main_analysis.py] script. This can be done using an IDE or directly on the terminal. We strongly recommend using the terminal, as the calculations are computationally expensive and the IDE may need more resources, hampering reMoDA calculations.
+After setting the correct parameters, reMoDA can be launched by executing the [main_analysis.py](main_analysis.py) script. This can be done using an IDE or directly on the terminal. We strongly recommend using the terminal, as the calculations are computationally expensive and the IDE may need more resources, hampering reMoDA calculations.
 ### Examples of usage
 To illustrate the usage of reMoDA, the most common scenarios are shown as examples of usage. The usage of reMoDA in a single sample is not recommended for the Clustering and PCA modules, as their units are arbitrary and the results cannot be interpreted with certainty, so those modules only work by comparing samples. Leaving that scenario out, the most common ones are samples with the same number of replicas, equally named between samples; samples with one replica each; and the most complex case, with more than two replicas and different number of replicas for each one.
 #### Two samples with the same number of replicas
