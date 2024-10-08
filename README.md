@@ -14,6 +14,7 @@ Required Python (3.10.12) libraries, as listed in [requirements.txt](requirement
 * scikit-learn(1.2.0)
 * numpy(1.23.5)
 * mdtraj(1.9.7)
+* gromacswrapper(0.9.1)
 #### External software
 * TM-score (downloadable from the [Zhang group webpage](https://zhanggroup.org/TM-score/))
 * GROMACS (2021.4-2, the latest version can be downloaded from the [GROMACS webpage](https://manual.gromacs.org/current/download.html))
