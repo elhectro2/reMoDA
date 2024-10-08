@@ -2,3 +2,4 @@ matplotlib~=3.6.2
 scikit-learn~=1.2.0
 numpy~=1.23.5
 mdtraj~=1.9.7
+gromacswrapper~=0.9.1
