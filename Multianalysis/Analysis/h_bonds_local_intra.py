@@ -9,7 +9,7 @@ def calculate_h_bonds_local_intra(input_dir, output_dir, replica, residue):
         order = "%s make_ndx -f %s*.gro -o %sMultianalysis/index_%s.ndx << EOF\n1 & r %s\n1 & ! r %s\nq\nEOF" \
                 % (gmx, input_dir, input_dir, str(residue), str(residue), str(residue))
         subprocess.call(order, shell=True)
-        order = "echo 'Protein_&_r_%s Protein_&_!r_%s' | %s hbond -f %s*.xtc -s %s*.tpr -tu ns " \
+        order = "echo 'Protein_&_r_%s Protein_&_!r_%s' | %s hbond-legacy -f %s*.xtc -s %s*.tpr -tu ns " \
                 "-n %sMultianalysis/index_%s.ndx -num %sH_bonds_resid%s_intra_%s.xvg"\
                 % (str(residue), str(residue), gmx, input_dir, input_dir, input_dir, str(residue), output_dir,
                    str(residue), replica)
