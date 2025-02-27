@@ -6,7 +6,7 @@ gmx = command_dir["gromacs"]
 
 def calculate_h_bonds_global_inter(input_dir, output_dir, replica):
     if not os.path.isfile("%sH_bonds_global_inter_%s.xvg" % (output_dir, replica)):
-        order = "echo 'Protein Water' | %s hbond -f %s*.xtc -s %s*.tpr -tu ns -num %sH_bonds_global_inter_%s.xvg" \
+        order = "echo 'Protein Water' | %s hbond-legacy -f %s*.xtc -s %s*.tpr -tu ns -num %sH_bonds_global_inter_%s.xvg" \
                 % (gmx, input_dir, input_dir, output_dir, replica)
         subprocess.call(order, shell=True)
 
