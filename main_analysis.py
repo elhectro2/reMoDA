@@ -59,6 +59,10 @@ protein_type = "a+b"  # Protein folding according to the secondary structure: al
 # If the value of protein_type is not a or b, it will be assigned a+b. Used for secondary structure calculations.
 protein_type = autocomplete_protein_type(protein_type)
 
+# Parameters for PCA
+parts = 20  # Number of parts in which to split the trajectory for plotting
+video_frames = 100  # Number of frames in the video generated, analogous to parts.
+
 # Parameters for clustering
 clustering_global_threshold = 0.3  # In nm
 clustering_local_threshold = 0.075  # In nm. Only used if local analyses are performed.
@@ -67,10 +71,10 @@ clustering_local_threshold = 0.075  # In nm. Only used if local analyses are per
 main_multianalysis(input_dir, output_dir, samples_replicas_dict, reference_sample, labels_dict, position_dict,
                    time_step, final, starting, protein_type)
 main_pca(input_dir, output_dir, samples_replicas_dict, reference_sample, labels_dict, position_dict, time_step, final,
-         starting, protein_type, output_dir)
+         starting, protein_type, parts=parts, video_frames=video_frames)
 main_clustering(input_dir, output_dir, samples_replicas_dict, reference_sample, labels_dict, position_dict, time_step,
                 n_groups, clustering_global_threshold, clustering_local_threshold)
 main_energetics(input_dir, output_dir, samples_replicas_dict, reference_sample, labels_dict)
 
 # Cleans the original directories for avoiding duplication of the resulting files.
-# final_cleaning(input_dir, samples_replicas_dict)
+final_cleaning(input_dir, samples_replicas_dict)
