@@ -31,7 +31,9 @@ def create_folder_structure(input_dir, output_dir, samples_replicas_dict, refere
     :param position_dict: Dictionary with the mutation position for each sample
     :return: Nothing, only generates folders
     """
-    check_makedirs(output_dir + "All_PCA_global")
+    check_makedirs(output_dir + "All/PCA/Global/all")
+    check_makedirs(output_dir + "All/PCA/Global/parts")
+    check_makedirs(output_dir + "All/PCA/Global/video_frames")
     for sample in samples_replicas_dict:
         specific_out_dir = output_dir + sample + "/"
         check_makedirs(specific_out_dir + "Multianalysis/Plots")
@@ -47,27 +49,21 @@ def create_folder_structure(input_dir, output_dir, samples_replicas_dict, refere
             check_makedirs(specific_in_dir + "Multianalysis")
             check_makedirs(specific_in_dir + "Clustering")
             check_makedirs(output_dir + "Original_input/" + sample + "/" + replica)
-            # check_makedirs(output_dir + sample + "/PCA_global/" + replica)
-            check_makedirs(output_dir + "All_PCA_global/" + sample + "_" + replica)
             if sample != reference_sample:
                 specific_out_dir_clustering = output_dir + reference_sample + "_vs_" + sample + "/Clustering/Global/"
-                specific_out_dir_pca = output_dir + reference_sample + "_vs_" + sample + "/PCA/Global/"
-                check_makedirs("%s%s_%s" % (specific_out_dir_pca, sample, replica))
-                check_makedirs("%sAll" % specific_out_dir_pca)
                 for reference_replica in samples_replicas_dict[reference_sample]:
                     check_makedirs("%s%s-%s_vs_%s-%s" % (specific_out_dir_clustering, reference_sample,
                                                          reference_replica, sample, replica))
-                    check_makedirs("%s%s_%s" % (specific_out_dir_pca, reference_sample, reference_replica))
                 if position_dict[sample]:
                     specific_out_dir_clustering = output_dir + reference_sample + "_vs_" + sample + \
                                                   "/Clustering/Local/"
                     specific_out_dir_pca = output_dir + reference_sample + "_vs_" + sample + "/PCA/Local/"
-                    check_makedirs("%s%s_%s" % (specific_out_dir_pca, sample, replica))
-                    check_makedirs("%sAll" % specific_out_dir_pca)
+                    check_makedirs("%sall" % specific_out_dir_pca)
+                    check_makedirs("%sparts" % specific_out_dir_pca)
+                    check_makedirs("%svideo_frames" % specific_out_dir_pca)
                     for reference_replica in samples_replicas_dict[reference_sample]:
                         check_makedirs("%s%s-%s_vs_%s-%s" % (specific_out_dir_clustering, reference_sample,
                                                              reference_replica, sample, replica))
-                        check_makedirs("%s%s_%s" % (specific_out_dir_pca, reference_sample, reference_replica))
 
 
 def autocomplete_labels(samples_replicas_dict, labels_dict):
