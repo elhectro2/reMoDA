@@ -54,6 +54,9 @@ If these parameters are not known, they can be obtained by running `gmx rms` on 
 * **n_groups:** Number of groups defined in the .tpr file (used when automating gmx make_ndx for local analyses)
 #### Multianalysis parameters
 * **protein_type:** Protein folding according to the secondary structure: alpha (a), beta (b), or alpha+beta(a+b). If the value of protein_type is not a or b, it will be assigned a+b. Used for secondary structure calculations.
+#### PCA parameters
+* **parts:** Number of parts in which to divide the trajectory for plotting the PCA in several plots to detect the evolution with simulation time.
+* **video_frames:** Number of frames to generate for the PCA trajectory video. Analogous to **parts**.
 #### Clustering parameters
 * **clustering_global_threshold:** Minimum distance between two different clusters in global clustering (in nm). 0.3 is recommended.
 * **clustering_local_threshold:** Minimum distance between two different clusters in local clustering (in nm), if performed. 0.075 is recommended.
