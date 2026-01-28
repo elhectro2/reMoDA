@@ -1,9 +1,9 @@
 from matplotlib import pyplot as plt
 from Multianalysis.Plotting.colors import colors_replicas
 
-interactions_dict = {"hbonds_inter_l": {"title": "Intra protein H-bonds", "y_label": "H-bonds", "x_label": "Time (ns)"},
-                     "hbonds_intra_l": {"title": "Protein-water H-bonds", "y_label": "H-bonds", "x_label": "Time (ns)"},
-                     "native_contacts_l": {"title": "Native contacts", "y_label": "Fraction of native contacts", "x_label": "Time (ns)"},
+interactions_dict = {"hbonds_intra_l": {"title": "Intra protein H-bonds", "y_label": "H-bonds", "x_label": "Time (ns)"},
+                     "hbonds_inter_l": {"title": "Protein-water H-bonds", "y_label": "H-bonds", "x_label": "Time (ns)"},
+                     "native_contacts_l": {"title": "Native contacts", "y_label": "ϕ native contacts", "x_label": "Time (ns)"},
                      "sasa_l": {"title": "SASA", "y_label": "SASA(A²)", "x_label": "Time (ns)"}}
 
 

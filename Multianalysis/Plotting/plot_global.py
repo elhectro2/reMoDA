@@ -3,15 +3,15 @@ from Multianalysis.Plotting.colors import colors_replicas
 
 energetics_dict = {"pressure": {"title": "Pressure", "y_label": "(bar)", "x_label": "Time (ns)"},
                    "energy": {"title": "Energy", "y_label": "(kJ/mol)", "x_label": "Time (ns)"}}
-interactions_dict = {"hbonds_inter": {"title": "Intra protein H-bonds", "y_label": "H-bonds", "x_label": "Time (ns)"},
-                     "hbonds_intra": {"title": "Protein-water H-bonds", "y_label": "H-bonds", "x_label": "Time (ns)"},
-                     "native_contacts": {"title": "Native contacts", "y_label": "Fraction of native contacts", "x_label": "Time (ns)"},
+interactions_dict = {"hbonds_intra": {"title": "Intra protein H-bonds", "y_label": "H-bonds", "x_label": "Time (ns)"},
+                     "hbonds_inter": {"title": "Protein-water H-bonds", "y_label": "H-bonds", "x_label": "Time (ns)"},
+                     "native_contacts": {"title": "Native contacts", "y_label": "ϕ native contacts", "x_label": "Time (ns)"},
                      "sasa": {"title": "SASA", "y_label": "SASA(A²)", "x_label": "Time (ns)"}}
 variance_dict = {"rmsd": {"title": "RMSD", "y_label": "RMSD", "x_label": "Time (ns)"},
                  "rmsdist": {"title": "RMSDist", "y_label": "RMSDist", "x_label": "Time (ns)"},
-                 "rmsf": {"title": "RMSF", "y_label": "RMSF", "x_label": "Residue"},
+                 "gyration": {"title": "Gyration", "y_label": "Rg", "x_label": "Time (ns)"},
                  "tm_score": {"title": "TM-score", "y_label": "TM-score", "x_label": "Time (ns)"}}
-structure_dict = {"gyration": {"title": "Gyration", "y_label": "Rg", "x_label": "Time (ns)"},
+structure_dict = {"rmsf": {"title": "RMSF", "y_label": "RMSF", "x_label": "Residue"},
                   "coil": {"title": "Coil structure", "y_label": "Coil residues", "x_label": "Time (ns)"},
                   "ss": {"title": " structure", "y_label": " residues", "x_label": "Time (ns)"}}
 
