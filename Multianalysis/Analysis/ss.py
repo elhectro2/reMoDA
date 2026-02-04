@@ -13,8 +13,8 @@ def calculate_ss(input_dir, output_dir, replica, protein_type):
     else:
         sscode = "HBE"
     if not os.path.exists("%ssscount_%s.xvg" % (output_dir, replica)):
-        order = "export DSSP=%s\necho Protein | %s do_dssp -f %s*.xtc -s %s*.gro " \
-                "-sss %s -tu ns -sc %ssscount_%s.xvg -o %ssscount_%s.xpm" % (dssp, gmx, input_dir, input_dir, sscode,
+        order = "export DSSP=%s\necho Protein | %s dssp -f %s*.xtc -s %s*.gro " \
+                "-sss %s -tu ns -sc %ssscount_%s.xvg -o %ssscount_%s.dat" % (dssp, gmx, input_dir, input_dir, sscode,
                                                                              output_dir, replica, output_dir, replica)
         print(order)
         subprocess.call(order, shell=True)
