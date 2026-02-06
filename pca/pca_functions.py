@@ -206,14 +206,14 @@ def plot_pca_parts(r_data, total_xlim, total_ylim, parts_output_dir, parts=20, t
                 old_y = y[start_prev:start]
                 start_prev_bound = start_prev
                 plt.scatter(old_x, old_y, alpha=0.5 * alpha_factor, edgecolors="none",
-                            c=color_cycle[i % len(color_cycle)], s=15)
+                            color=color_cycle[i % len(color_cycle)], s=15)
 
             new_x = x[start:end]
             new_y = y[start:end]
             plt.scatter(new_x, new_y, label=name, alpha=alpha_factor, edgecolors="none",
-                        c=color_cycle[i % len(color_cycle)], s=15)
+                        color=color_cycle[i % len(color_cycle)], s=15)
             i += 1
-        bar_cmap = (matplotlib.colors.ListedColormap(["white", ("grey", 0.5), "grey", "white"]))
+        bar_cmap = (matplotlib.colors.ListedColormap(["white", (0.5, 0.5, 0.5, 0.5), "grey", "white"]))
         bounds = [0, start_prev_bound * time_step, start * time_step, end * time_step, max(time) + 1]
         print("bounds " + str(bounds))
         norm = matplotlib.colors.BoundaryNorm(bounds, bar_cmap.N)
@@ -361,3 +361,4 @@ def pca_local(global_data_dict, input_dir, output_dir, samples_replicas_dict, re
                 local_frames_dir = local_parts_output_dir
             video_output_dir = f"{output_dir}{labels_dict[reference_sample]}_vs_{labels_dict[sample]}/PCA/Local/"
             plot_pca_video(local_frames_dir, video_output_dir, video_frames=video_frames)
+
