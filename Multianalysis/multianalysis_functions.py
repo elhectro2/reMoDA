@@ -88,7 +88,7 @@ def global_multianalysis(input_dir, output_dir, sample, replicas, time_step, fin
         calculate_rmsdist(specific_in_dir, specific_output_dir, replica)
         calculate_rmsf(specific_in_dir, specific_output_dir, replica)  # Includes B-factors
         calculate_sasa(specific_in_dir, specific_output_dir, replica)
-        calculate_ss(specific_in_dir, specific_output_dir, replica, protein_type)
+        calculate_ss(specific_in_dir, specific_output_dir, replica)
         calculate_tm_score(specific_in_dir, specific_output_dir, replica, starting, time_step, final)
 
         # Reading all global functions
@@ -102,7 +102,7 @@ def global_multianalysis(input_dir, output_dir, sample, replicas, time_step, fin
         replica_data_dict["rmsdist"] = read_rmsdist(specific_output_dir, replica)
         replica_data_dict["rmsf"] = read_rmsf(specific_output_dir, replica)
         replica_data_dict["sasa"] = read_sasa(specific_output_dir, replica)
-        replica_data_dict["ss"] = read_ss(specific_output_dir, replica)
+        replica_data_dict["ss"] = read_ss(specific_output_dir, replica, protein_type)
         replica_data_dict["coil"] = read_ss_coil(specific_output_dir, replica)
         replica_data_dict["tm_score"] = read_tm_score(specific_output_dir, replica)
 
