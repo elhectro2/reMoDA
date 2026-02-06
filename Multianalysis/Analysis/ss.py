@@ -7,7 +7,7 @@ dssp = command_dir["dssp"]
 
 def calculate_ss(input_dir, output_dir, replica):
     if not os.path.exists("%ssscount_%s.xvg" % (output_dir, replica)):
-        order = "export DSSP=%s\necho Protein | %s dssp -f %s*.xtc -s %s*.gro -hmode dssp" \
+        order = "export DSSP=%s\necho Protein | %s dssp -f %s*.xtc -s %s*.gro -hmode dssp " \
                 "-clear -tu ns -num %ssscount_%s.xvg -o %ssscount_%s.dat" % (dssp, gmx, input_dir, input_dir, 
                                                                              output_dir, replica, output_dir, replica)
         print(order)
@@ -28,7 +28,6 @@ def read_ss(output_dir, replica, protein_type):
     indices = []
     file = open(file_dir, errors="ignore")
     for line in file:  # Reads all the file and does things
-        print(line)
         if line[0] not in "#@":  # Non-comment lines
             line = line.split()  # Splits the line in a list of "words" (elements separated by spaces in a string)
             data.append(line)  # Data for each time is stored in a list of lists
@@ -51,9 +50,6 @@ def read_ss_coil(output_dir, replica):
         if line[0] not in "#@":  # Non-comment lines
             line = line.split()  # Splits the line in a list of "words" (elements separated by spaces in a string)
             data.append(line)  # Data for each time is stored in a list of lists
-        elif line[0:3] == "@ s" and "Loops" in line[3:]:
-            index = int(line[3:].split()[0]) + 1
-    print(index)
     for item in data:
         time_series.append(float(item[0]))
         values.append(float(item[1]))
