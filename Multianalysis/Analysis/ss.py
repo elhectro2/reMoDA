@@ -16,11 +16,11 @@ def calculate_ss(input_dir, output_dir, replica):
 
 def read_ss(output_dir, replica, protein_type):
     if protein_type and protein_type.lower() == "alpha":
-        sscodes = ["Î±-Helices"]
+        indices = [10]
     elif protein_type and protein_type.lower() == "beta":
-        sscodes = ["Î²-Strands", "Î²-Bridges"]
+        indices = [8, 9]
     else:
-        sscodes = ["Î±-Helices", "Î²-Strands", "Î²-Bridges"]
+        indices = [8, 9, 10]
     file_dir = "%ssscount_%s.xvg" % (output_dir, replica)
     data = []
     time_series = []
@@ -32,12 +32,6 @@ def read_ss(output_dir, replica, protein_type):
         if line[0] not in "#@":  # Non-comment lines
             line = line.split()  # Splits the line in a list of "words" (elements separated by spaces in a string)
             data.append(line)  # Data for each time is stored in a list of lists
-        elif line[0:3] == "@ s":
-            for code in sscodes:
-                if code in line[3:]:
-                    indices.append(int(line[3:].split()[0]) + 1)
-                    break
-    print(indices)
     for item in data:
         time_series.append(float(item[0]))
         if indices:
@@ -53,7 +47,6 @@ def read_ss_coil(output_dir, replica):
     time_series = []
     values = []
     file = open(file_dir, errors="ignore")
-    index = False
     for line in file:  # Reads all the file and does things
         if line[0] not in "#@":  # Non-comment lines
             line = line.split()  # Splits the line in a list of "words" (elements separated by spaces in a string)
@@ -63,8 +56,5 @@ def read_ss_coil(output_dir, replica):
     print(index)
     for item in data:
         time_series.append(float(item[0]))
-        if index:
-            values.append(float(item[index]))
-        else:
-            values.append(0)
+        values.append(float(item[1]))
     return [time_series, values]
