@@ -5,23 +5,17 @@ gmx = command_dir["gromacs"]
 dssp = command_dir["dssp"]
 
 
-def calculate_ss(input_dir, output_dir, replica, protein_type):
-    if protein_type and protein_type.lower() == "alpha":
-        sscode = "H"
-    elif protein_type and protein_type.lower() == "beta":
-        sscode = "BE"
-    else:
-        sscode = "HBE"
+def calculate_ss(input_dir, output_dir, replica):
     if not os.path.exists("%ssscount_%s.xvg" % (output_dir, replica)):
-        order = "export DSSP=%s\necho Protein | %s dssp -f %s*.xtc -s %s*.gro " \
-                "-sss %s -tu ns -sc %ssscount_%s.xvg -o %ssscount_%s.dat" % (dssp, gmx, input_dir, input_dir, sscode,
+        order = "export DSSP=%s\necho Protein | %s dssp -f %s*.xtc -s %s*.gro -hmode dssp" \
+                "-clear -tu ns -sc %ssscount_%s.xvg -o %ssscount_%s.dat" % (dssp, gmx, input_dir, input_dir, 
                                                                              output_dir, replica, output_dir, replica)
         print(order)
         subprocess.call(order, shell=True)
 
 
-def read_ss(output_dir, replica):
-        if protein_type and protein_type.lower() == "alpha":
+def read_ss(output_dir, replica, protein_type):
+    if protein_type and protein_type.lower() == "alpha":
         sscodes = ["Î±-Helices"]
     elif protein_type and protein_type.lower() == "beta":
         sscodes = ["Î²-Strands", "Î²-Bridges"]
