@@ -333,6 +333,7 @@ def pca_local(global_data_dict, input_dir, output_dir, samples_replicas_dict, re
         if sample != reference_sample and position_dict[sample]:
             print(f"Get local data {labels_dict[sample]}")
             local_data_dict = {sample: global_data_dict[sample], reference_sample: global_data_dict[reference_sample]}
+            local_samples_replicas_dict = {reference_sample: samples_replicas_dict[reference_sample], sample: samples_replicas_dict[sample]}
             new_local_data = local_multianalysis(input_dir, output_dir, reference_sample, sample,
                                                  samples_replicas_dict[reference_sample], samples_replicas_dict[sample],
                                                  labels_dict, position_dict[sample])
@@ -341,7 +342,7 @@ def pca_local(global_data_dict, input_dir, output_dir, samples_replicas_dict, re
                     local_data_dict[item][replica].update(new_local_data[item][replica])
             print(f"get local pca model {labels_dict[sample]}")
             output_pca_data = f"{output_dir}{labels_dict[reference_sample]}_vs_{labels_dict[sample]}/PCA/Local/"
-            pc_per_replica, local_xlim, local_ylim = get_pca_model(local_data_dict, samples_replicas_dict,
+            pc_per_replica, local_xlim, local_ylim = get_pca_model(local_data_dict, local_samples_replicas_dict,
                                                                    output_pca_data, include_local=True)
             print(f"get full local PCA plot {labels_dict[sample]}")
             all_local_output_dir = (f"{output_dir}{labels_dict[reference_sample]}_vs_{labels_dict[sample]}/PCA/Local/"
@@ -361,4 +362,5 @@ def pca_local(global_data_dict, input_dir, output_dir, samples_replicas_dict, re
                 local_frames_dir = local_parts_output_dir
             video_output_dir = f"{output_dir}{labels_dict[reference_sample]}_vs_{labels_dict[sample]}/PCA/Local/"
             plot_pca_video(local_frames_dir, video_output_dir, video_frames=video_frames)
+
 
