@@ -15,17 +15,19 @@ def calculate_ss(input_dir, output_dir, replica):
 
 
 def read_ss(output_dir, replica, protein_type):
+    file_dir = "%ssscount_%s.xvg" % (output_dir, replica)
+    data = []
+    time_series = []
+    values = []
+    indices = []
+    
     if protein_type and protein_type.lower() == "alpha":
         indices = [10]
     elif protein_type and protein_type.lower() == "beta":
         indices = [8, 9]
     else:
         indices = [8, 9, 10]
-    file_dir = "%ssscount_%s.xvg" % (output_dir, replica)
-    data = []
-    time_series = []
-    values = []
-    indices = []
+    
     file = open(file_dir, errors="ignore")
     for line in file:  # Reads all the file and does things
         if line[0] not in "#@":  # Non-comment lines
