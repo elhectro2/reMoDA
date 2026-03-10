@@ -53,6 +53,11 @@ def best_hummer_q(traj, native, resid, start):
     r0 = md.compute_distances(native[0], native_contacts)
 
     q = np.mean(1.0 / (1 + np.exp(BETA_CONST * (r - LAMBDA_CONST * r0))), axis=1)
+    
+    for i in range(len(q)):
+        if not q[i]:
+            q[i] = 0
+            
     return q
 
 
@@ -84,5 +89,8 @@ def read_native_contacts_local(output_dir, replica, residue):
             data.append(line)  # Data for each time is stored in a list of lists
     for item in data:
         time_series.append(float(item[0]))
-        values.append(float(item[1]))
+        if item[1] == "nan":
+            values.append(0)
+        else:
+            values.append(float(item[1]))
     return [time_series, values]
